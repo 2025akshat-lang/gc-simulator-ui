@@ -1,0 +1,10 @@
+{
+  "description": "This advanced gas chromatography simulator offers a realistic training environment for students and professionals, enabling hands-on learning of GC principles and operations.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
