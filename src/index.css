@@ -2,47 +2,29 @@
 
 @layer base {
   body {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
     background-color: #030712 !important;
     color: #ffffff !important;
     font-family: ui-monospace, monospace;
-    overflow-x: hidden;
   }
 }
 
-/* Force horizontal layout tabs to slide seamlessly side-to-side */
+/* Force standard desktop view zoom out directly on mobile responsive screen */
+@media (max-width: 1024px) {
+  #root, body {
+    width: 1280px !important;
+    min-width: 1280px !important;
+    zoom: 0.35 !important; /* Scale down the whole UI to fit like a laptop screen */
+    -moz-transform: scale(0.35);
+    -moz-transform-origin: 0 0;
+  }
+}
+
+/* Header Slide navigation settings */
 header, nav, .flex-row, div[class*="flex-row"], [data-slot="tabs-list"] {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: nowrap !important;
   overflow-x: auto !important;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none !important; 
-}
-
-header::-webkit-scrollbar, nav::-webkit-scrollbar {
-  display: none !important;
-}
-
-header button, nav button, a {
-  flex-shrink: 0 !important;
-  white-space: nowrap !important;
-}
-
-/* Fix mobile overlapping components: Change grid to pure vertical single column on small screens */
-@media (max-width: 1024px) {
-  .grid, div[class*="grid-cols"] {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 1.5rem !important;
-  }
-  
-  /* Prevent side items from floating or absolute overlapping */
-  div, section {
-    position: relative !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    transform: none !important;
-  }
 }
