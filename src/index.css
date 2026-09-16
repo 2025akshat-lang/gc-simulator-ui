@@ -11,18 +11,18 @@
   }
 }
 
-/* Fix: Top Bar Navigation Buttons Layout to Scroll Side-ways */
-header, nav, .flex-row, div[class*="flex"][class*="row"] {
+/* Force horizontal layout tabs to slide seamlessly side-to-side */
+header, nav, .flex-row, div[class*="flex-row"], [data-slot="tabs-list"] {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: nowrap !important;
   overflow-x: auto !important;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; 
+  scrollbar-width: none !important; 
 }
 
 header::-webkit-scrollbar, nav::-webkit-scrollbar {
-  display: none;
+  display: none !important;
 }
 
 header button, nav button, a {
@@ -30,16 +30,19 @@ header button, nav button, a {
   white-space: nowrap !important;
 }
 
-/* Fix: Layout Containers Overlapping on Mobile View */
-.grid {
-  display: grid !important;
-}
-
-@media (max-width: 768px) {
-  div[class*="grid-cols"] {
-    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-  }
-  div[class*="flex-col"] {
+/* Fix mobile overlapping components: Change grid to pure vertical single column on small screens */
+@media (max-width: 1024px) {
+  .grid, div[class*="grid-cols"] {
+    display: flex !important;
     flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+  
+  /* Prevent side items from floating or absolute overlapping */
+  div, section {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    transform: none !important;
   }
 }
